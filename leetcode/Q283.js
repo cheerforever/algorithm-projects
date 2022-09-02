@@ -24,3 +24,19 @@
     return nums
 };
 // @lc code=end
+
+// 快慢指针
+
+// 慢指针移动条件：快指针指向的元素不等于0时
+// 慢指针左边均为非零数，慢指针的右边直到快指针的范围均为0
+
+var moveZeroes = function(nums) {
+    let slow = 0, fast = 0
+    while(fast < nums.length){
+        if(nums[fast] !== 0){
+            [nums[slow], nums[fast]] = [nums[fast], nums[slow]]
+            slow++
+        }
+        fast++
+    }
+};
