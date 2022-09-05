@@ -58,53 +58,45 @@
  * 
  */
 
-// @lc code=start
-// 自己的解法---没做出来！！！
+// 方法一：暴力枚举
+// 时间复杂度：O(N)
+// 空间复杂度：O(1)O(1)
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
  var twoSum = function(nums, target) {
-    let left = 0
-    let right = nums.length-1
-    while(left < right){
-        if(nums[left]+nums[right] === target){
-            return [left, right]
-            break;
-        }
-        if(nums[left] > target){
-            left++
-        }
-        if(nums[right] > target){
-            right--
-        }
-        if(nums[left]+nums[right] < target){
-            if(nums[left]<nums[right]){
-                left++
-            } else {
-                right--
+    for (let i = 0; i< nums.length; i++){
+        for(let j = i+1; j < nums.length; j++){
+            if(nums[i]+nums[j] === target){
+                return [i, j]
             }
         }
     }
+    return []
 };
-// @lc code=end
 
-// @lc code=start
-// 利用Map
+// 方法二：哈希表
+// 时间复杂度：O(N)
+// 空间复杂度：O(1)
+// 我们遍历到数字 a 时，用 target 减去 a，就会得到 b，若 b 存在于哈希表中，我们就可以直接返回结果了。
+// 若 b 不存在，那么我们需要将 a 存入哈希表，好让后续遍历的数字使用。
+
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
- var twoSum = function(nums, target) {
+var twoSum = function(nums, target) {
     let map = new Map()
     for(let i = 0; i < nums.length; i++){
         if(map.has(target - nums[i])){
-            return [map.get(target - nums[i]), i]
-        } 
-        map.set(nums[i], i)
+            return [i, map.get(target - nums[i])]
+        } else {
+            map.set(nums[i], i)
+        }
     }
+    return []
 };
-// @lc code=end
 
