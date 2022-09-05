@@ -46,15 +46,21 @@
  * 
  */
 
-// [1,2,2,3,3,4,7,8]
-
 // @lc code=start
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
- var findDisappearedNumbers = function(nums) {
-
+// 遍历1至n个数，判断每个数是否在nums数组中，不在则push到结果数组中。最后返回结果数组
+var findDisappearedNumbers = function(nums) {
+    const len = nums.length
+    let result = []
+    for(let i = 1; i<= len; i++){
+        if(nums.indexOf(i) < 0){
+            result.push(i)
+        }
+    }
+    return result
 };
 // @lc code=end
 
