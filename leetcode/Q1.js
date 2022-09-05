@@ -59,13 +59,52 @@
  */
 
 // @lc code=start
+// 自己的解法---没做出来！！！
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
  var twoSum = function(nums, target) {
+    let left = 0
+    let right = nums.length-1
+    while(left < right){
+        if(nums[left]+nums[right] === target){
+            return [left, right]
+            break;
+        }
+        if(nums[left] > target){
+            left++
+        }
+        if(nums[right] > target){
+            right--
+        }
+        if(nums[left]+nums[right] < target){
+            if(nums[left]<nums[right]){
+                left++
+            } else {
+                right--
+            }
+        }
+    }
+};
+// @lc code=end
 
+// @lc code=start
+// 利用Map
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+ var twoSum = function(nums, target) {
+    let map = new Map()
+    for(let i = 0; i < nums.length; i++){
+        if(map.has(target - nums[i])){
+            return [map.get(target - nums[i]), i]
+        } 
+        map.set(nums[i], i)
+    }
 };
 // @lc code=end
 
