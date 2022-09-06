@@ -9,3 +9,5 @@ array.splice(index,0,val);
 意思：删除 index 位置上的元素 第二个参数的意思是 删除从 index 开始的后几位
 
 array.splice(index,1);
+
+3. reduce: 计算数组元素相加后的总和
