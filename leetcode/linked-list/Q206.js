@@ -84,3 +84,19 @@
 };
 // @lc code=end
 
+// 方法二：递归
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ var reverseList = function(head) {
+    if (head == null || head.next == null) {
+        return head;
+    }
+    const newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
+};
+// @lc code=end
+
