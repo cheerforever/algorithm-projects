@@ -104,6 +104,44 @@
  * 
  */
 
+// 方法一：哈希表
+// 便利headA，将每一个节点加入到哈希集合中。
+// 然后遍历headB，对于每个节点判断是否在哈希集合中，如果存在则后面的节点都在哈希集合中，返回该节点
+// @lc code=start
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+ var getIntersectionNode = function(headA, headB) {
+    const visited = new Set()
+    let temp = headA
+    while(temp !== null){
+        visited.add(temp)
+        temp = temp.next
+    } 
+    temp = headB
+    while(temp !== null){
+        if(visited.has(temp)){
+            return temp
+        } else {
+            temp = temp.next
+        }
+    }
+    return null
+};
+
+// @lc code=end
+
+// 方法二：双指针
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -121,5 +159,6 @@
  var getIntersectionNode = function(headA, headB) {
     
 };
+
 // @lc code=end
 
