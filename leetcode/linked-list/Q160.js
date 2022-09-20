@@ -142,6 +142,11 @@
 // @lc code=end
 
 // 方法二：双指针
+// 先判断两个链表不为空，只要一个链表为空，则一定不相交
+// 定义一个指针pA指向headA, 定义一个pB指针指向headB, 两个指针分别遍历两个列表
+// 如果pA不为空，pA移到下一个节点；如果pB不为空，pB移到下一个节点
+// 如果pA为空，则将pA指向headB的头节点；如果pB为空，则将pB指向headA的头节点
+// 如果pA和pB指向同一个节点或同时为空时，返回该节点或null
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -157,7 +162,14 @@
  * @return {ListNode}
  */
  var getIntersectionNode = function(headA, headB) {
-    
+    if(!headA || !headB) return null
+    let pA = headA
+    let pB = headB
+    while(pA !== pB){
+        pA = pA === null ? headB : pA.next
+        pB = pB === null ? headA : pB.next
+    }
+    return pA
 };
 
 // @lc code=end
